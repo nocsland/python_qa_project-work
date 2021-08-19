@@ -55,3 +55,17 @@ def test_delete_product(browser):
     admin_page.find_and_delete_product()
     admin_page.switch_to_alert_and_ok()
     admin_page.wait_css_element('.alert-dismissible')
+
+
+@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.suite("Тесты страницы админки")
+@allure.feature("Проверка админки")
+@allure.epic("Проверка магазина на opencart")
+@allure.title("Удаление пользователя")
+@allure.description("Тест проверяет возможность удалить продукт")
+@allure.severity(allure.severity_level.CRITICAL)
+def test_delete_customer(browser):
+    admin_page = AdminPage(browser).open()
+    admin_page.login('user', 'bitnami')
+    admin_page.goto_all_customers()
+    admin_page.delete_customer()

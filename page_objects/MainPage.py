@@ -53,3 +53,13 @@ class MainPage(BasePage):
         self.browser.find_element_by_link_text('Continue').click()
         self.logger.info('agree and continue was clicked')
         return self
+
+    def add_macbook_to_cart(self):
+        self.browser.find_element_by_link_text('MacBook').click()
+        self.browser.find_element_by_id('button-cart').click()
+        return self
+
+    def remove_item_from_cart(self):
+        self.browser.find_element_by_id('cart-total').click()
+        self.browser.find_element_by_css_selector('.fa-times').click()
+        return self

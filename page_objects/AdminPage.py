@@ -29,8 +29,6 @@ class AdminPage(BasePage):
         self.logger.info("element was found")
         return self
 
-
-
     def goto_all_products(self):
         self.browser.find_element_by_id('menu-catalog').click()
         self.browser.find_element_by_xpath('//a[contains(text(),"Products")]').click()
@@ -69,4 +67,17 @@ class AdminPage(BasePage):
         self.logger.info('product was deleted')
         return self
 
+    def goto_all_customers(self):
+        self.browser.find_element_by_xpath('//*[@id="menu-customer"]/a').click()
+        self.browser.find_elements_by_xpath('//a[contains(text(),"Customers")]')[1].click()
+        self.verify_title('Customers')
+        self.logger.info('navigated to all customers')
+        return self
 
+    def delete_customer(self):
+        self.browser.find_element_by_xpath('//tr/td[2][contains(text(),"Ivan Ivanov")]/..//input').click()
+        self.browser.find_element_by_css_selector('.fa-trash-o').click()
+        self.switch_to_alert_and_ok()
+        self.wait_css_element('.fa-check-circle')
+        self.logger.info('customer was deleted')
+        return self

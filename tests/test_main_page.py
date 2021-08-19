@@ -46,8 +46,6 @@ def test_add_new_user(browser):
     main_page.open_admin()
     main_page.login('user', 'bitnami')
     main_page.verify_title('Dashboard')
-    main_page.goto_all_customers()
-    main_page.delete_customer()
 
 
 @allure.parent_suite("Проверка тестового магазина opencart")
@@ -68,3 +66,17 @@ def test_switch_currency(browser):
     main_page.click_switch_currency()
     main_page.wait_css_element('button[name="USD"]')
     main_page.click_to_currency('USD')
+
+
+@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.suite("Тесты главной страницы")
+@allure.epic("Проверка магазина на opencart")
+@allure.feature("Проверка главной страницы")
+@allure.title("Добавить и удалить товар из корзины")
+@allure.description("""Тест проверяет возможность добавить товар в корзину, а затем удалить его оттуда""")
+@allure.severity(allure.severity_level.CRITICAL)
+def test_add_and_remove_macbook_to_cart(browser):
+    main_page = MainPage(browser).open()
+    main_page.add_macbook_to_cart()
+    main_page.wait_css_element('.alert-dismissible')
+    main_page.remove_item_from_cart()
