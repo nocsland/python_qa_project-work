@@ -1,8 +1,9 @@
-import pytest
-import os
 import logging
-from selenium import webdriver
+import os
 from datetime import datetime
+
+import pytest
+from selenium import webdriver
 from selenium.webdriver.support.events import EventFiringWebDriver, AbstractEventListener
 
 DRIVERS = os.path.expanduser('~/WebDriver')
