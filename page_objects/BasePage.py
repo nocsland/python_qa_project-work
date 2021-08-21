@@ -1,6 +1,7 @@
 import logging
 import allure
 
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -27,7 +28,7 @@ class BasePage:
         self.logger.info('title was verified')
         return self
 
-    @allure.step('Логин')
+    @allure.step('Вход в админ панель')
     def login(self, login, password):
         self.browser.find_element_by_name('username').clear()
         self.browser.find_element_by_name('username').send_keys(login)
@@ -44,7 +45,7 @@ class BasePage:
         self.logger.info('switch alert is ok')
         return self
 
-    @allure.step('Ожидание элемента')
+    @allure.step('Ожидание видимости элемента')
     def wait_css_element(self, selector):
         wait = WebDriverWait(self.browser, 3)
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, selector)))
@@ -63,7 +64,7 @@ class BasePage:
         self.logger.info('currency was switched')
         return self
 
-    @allure.step('Открыть страницу административной панели')
+    @allure.step('Открыть страницу админ панели')
     def open_admin(self):
         self.browser.get(self.url + '/admin/')
         return self
