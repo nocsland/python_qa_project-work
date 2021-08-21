@@ -54,12 +54,15 @@ class MainPage(BasePage):
         self.logger.info('agree and continue was clicked')
         return self
 
-    def add_macbook_to_cart(self):
+    def add_item_to_cart(self):
         self.browser.find_element_by_link_text('MacBook').click()
         self.browser.find_element_by_id('button-cart').click()
+        self.logger.info('added item to cart')
         return self
 
     def remove_item_from_cart(self):
         self.browser.find_element_by_id('cart-total').click()
         self.browser.find_element_by_css_selector('.fa-times').click()
+        self.browser.find_elements_by_partial_link_text('0 item(s) - $0.00')
+        self.logger.info('removed item from cart')
         return self

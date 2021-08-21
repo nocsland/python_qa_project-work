@@ -1,5 +1,4 @@
 import logging
-import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -60,6 +59,3 @@ class BasePage:
     def open_admin(self):
         self.browser.get(self.url + '/admin/')
         return self
-
-
-

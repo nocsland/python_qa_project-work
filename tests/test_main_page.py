@@ -1,4 +1,5 @@
 import allure
+
 from page_objects.MainPage import MainPage
 
 
@@ -73,10 +74,10 @@ def test_switch_currency(browser):
 @allure.epic("Проверка магазина на opencart")
 @allure.feature("Проверка главной страницы")
 @allure.title("Добавить и удалить товар из корзины")
-@allure.description("""Тест проверяет возможность добавить товар в корзину, а затем удалить его оттуда""")
+@allure.description("""Тест проверяет возможность добавить товар в корзину и его удаление из корзины""")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_add_and_remove_macbook_to_cart(browser):
+def test_add_and_remove_item_to_cart(browser):
     main_page = MainPage(browser).open()
-    main_page.add_macbook_to_cart()
-    main_page.wait_css_element('.alert-dismissible')
+    main_page.add_item_to_cart()
+    main_page.wait_css_element('.alert-success.alert-dismissible')
     main_page.remove_item_from_cart()
