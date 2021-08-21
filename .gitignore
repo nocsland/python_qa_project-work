@@ -132,7 +132,6 @@ dmypy.json
 /tests/.allure-results/
 .allure-report/
 .allure-results/
-.screenshots/
 .idea/
 
 
@@ -140,4 +139,4 @@ dmypy.json
 /allure-report/
 /tests/allure-report/
 /tests/allure-results/
-/screenshots/
+
