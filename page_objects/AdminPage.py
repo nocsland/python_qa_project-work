@@ -48,7 +48,7 @@ class AdminPage(BasePage):
         self.logger.info('clicked add')
         return self
 
-    @allure.step('Заполнить основные поля формы добавления товара')
+    @allure.step('Заполнить обязательные поля формы добавления товара на вкладке "General"')
     def fill_general_form_product(self, name, title):
         self.browser.find_element_by_id('input-name1').send_keys(name)
         self.browser.find_element_by_id('input-meta-title1').send_keys(title)
@@ -67,7 +67,7 @@ class AdminPage(BasePage):
         self.logger.info('the model field is filled')
         return self
 
-    @allure.step('Нажать кнопку "save"')
+    @allure.step('Нажать кнопку "Save"')
     def click_save_product(self):
         self.browser.find_element_by_css_selector('.fa-save').click()
         self.logger.info('product was saved')
