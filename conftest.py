@@ -1,6 +1,5 @@
 import logging
 import os
-from datetime import datetime
 
 import pytest
 from selenium import webdriver
@@ -108,16 +107,13 @@ class MyListener(AbstractEventListener):
     def on_exception(self, exception, driver):
         screenshots_root = os.curdir + f'/screenshots/'
         logging.error(f'I got: {exception}')
-        driver.save_screenshot(f'{screenshots_root}/{datetime.now()}_{exception}.png')
+        driver.save_screenshot(f'{screenshots_root}/{exception}.png')
 
 
 @pytest.fixture(scope="session", autouse=True)
 def get_environment(pytestconfig):
     browser_name = pytestconfig.getoption("--browser")
     props = {
-        # 'OS': os.getenv('DESKTOP_SESSION'),
-        # 'Shell': os.getenv('SHELL'),
-        # 'Terminal': os.getenv('TERM'),
         'Browser': browser_name,
         'Stand': 'Production'
 
@@ -127,6 +123,3 @@ def get_environment(pytestconfig):
     with open(f'{tests_root}/allure-results/environment.properties', 'w') as f:
         for k, v in props.items():
             f.write(f'{k}={v}\n')
-
-
-

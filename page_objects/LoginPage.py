@@ -49,5 +49,3 @@ class LoginPage(BasePage):
         self.browser.find_element_by_link_text('Logout').click()
         self.logger.info('logout done')
         return self
-
-

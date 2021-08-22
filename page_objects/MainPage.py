@@ -66,7 +66,7 @@ class MainPage(BasePage):
 
     @allure.step('Добавить товар с главной страницы, в корзину')
     def add_item_to_cart(self):
-        self.browser.find_element_by_link_text('MacBook').click()
+        self.browser.find_element_by_xpath('//img[@alt="MacBook"]').click()
         self.browser.find_element_by_id('button-cart').click()
         self.logger.info('added item to cart')
         return self
@@ -74,7 +74,7 @@ class MainPage(BasePage):
     @allure.step('Удалить товар из корзины')
     def remove_item_from_cart(self):
         self.browser.find_element_by_id('cart-total').click()
-        self.browser.find_element_by_css_selector('.fa-times').click()
+        self.browser.find_element_by_xpath('//button[@title="Remove"]').click()
         self.browser.find_elements_by_partial_link_text('0 item(s) - $0.00')
         self.logger.info('removed item from cart')
         return self

@@ -1,5 +1,6 @@
-from page_objects.BasePage import BasePage
 import allure
+
+from page_objects.BasePage import BasePage
 
 
 class AdminPage(BasePage):

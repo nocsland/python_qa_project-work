@@ -79,5 +79,5 @@ def test_switch_currency(browser):
 def test_add_and_remove_item_to_cart(browser):
     main_page = MainPage(browser).open()
     main_page.add_item_to_cart()
-    main_page.wait_css_element('.alert-success.alert-dismissible')
+    main_page.wait_css_element('.alert-dismissible')
     main_page.remove_item_from_cart()
