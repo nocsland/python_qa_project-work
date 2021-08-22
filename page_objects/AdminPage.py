@@ -81,14 +81,6 @@ class AdminPage(BasePage):
         self.logger.info('product was deleted')
         return self
 
-    @allure.step('Перейти на страницу "Customers"')
-    def goto_all_customers(self):
-        self.browser.find_element_by_xpath('//*[@id="menu-customer"]/a').click()
-        self.browser.find_elements_by_xpath('//a[contains(text(),"Customers")]')[1].click()
-        self.verify_title('Customers')
-        self.logger.info('navigated to all customers')
-        return self
-
     @allure.step('Удалить УЗ пользователя')
     def delete_customer(self):
         self.browser.find_element_by_xpath('//tr/td[2][contains(text(),"Ivan Ivanov")]/..//input').click()

@@ -131,7 +131,6 @@ dmypy.json
 /tests/.allure-report/
 /tests/.allure-results/
 .allure-report/
-.allure-results/
 .idea/
 
 
