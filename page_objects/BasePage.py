@@ -64,7 +64,7 @@ class BasePage:
         self.logger.info('currency was switched')
         return self
 
-    @allure.step('Открыть страницу админ панели')
+    @allure.step('Открыть страницу панели администратора')
     def open_admin(self):
         self.browser.get(self.url + '/admin/')
         return self
