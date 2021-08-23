@@ -11,7 +11,7 @@ from page_objects.ProductCardPage import ProductCardPage
 @allure.title("Поиск элементов на странице карточки товара")
 @allure.description("""Тест проверяет наличие элементов на странице карточки товара""")
 @allure.severity(allure.severity_level.NORMAL)
-def tests_product_card_page(browser):
+def test_find_elements_on_product_card(browser):
     product_card_page = ProductCardPage(browser).open()
     product_card_page.find_h1_product()
     product_card_page.find_button_add_to_cart()
@@ -27,7 +27,7 @@ def tests_product_card_page(browser):
 @allure.title("Создание отзыва о товаре")
 @allure.description("""Тест проверяет возможность создать отзыв на странице карточки товара""")
 @allure.severity(allure.severity_level.NORMAL)
-def tests_product_card_page(browser):
+def test_write_review_product_card(browser):
     product_card_page = ProductCardPage(browser).open()
     product_card_page.click_write_a_review()
     product_card_page.fill_name_reviewer('reviewer')
