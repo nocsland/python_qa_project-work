@@ -29,10 +29,10 @@ class ProductCardPage(BasePage):
         self.logger.info("element was found")
         return self
 
-    @allure.step('Найти ссылку "Write a review"')
-    def find_write_a_review(self):
-        self.browser.find_element_by_link_text('Write a review')
-        self.logger.info("element was found")
+    @allure.step('Найти и кликнуть ссылку "Write a review"')
+    def click_write_a_review(self):
+        self.browser.find_element_by_link_text('Write a review').click()
+        self.logger.info("Write a review was clicked")
         return self
 
     @allure.step('Найти вкладку "Description"')
@@ -40,3 +40,30 @@ class ProductCardPage(BasePage):
         self.browser.find_element_by_id('tab-description')
         self.logger.info("element was found")
         return self
+
+    @allure.step('Найти и заполнить "Your Name"')
+    def fill_name_reviewer(self, name_reviewer):
+        self.browser.find_element_by_id('input-name').send_keys(name_reviewer)
+        self.logger.info("field 'Your Name' was filled")
+        return self
+
+    @allure.step('Найти и заполнить "Your Review"')
+    def fill_review(self, review):
+        self.browser.find_element_by_id('input-review').send_keys(review)
+        self.logger.info("field 'Your Review' was filled")
+        return self
+
+    @allure.step('Найти и заполнить рейтинг')
+    def click_rating(self):
+        self.browser.find_element_by_css_selector('input[value="5"]').click()
+        self.logger.info("radio-button was clicked")
+        return self
+
+    @allure.step('Кликнуть по "Continue"')
+    def click_review_button(self):
+        self.browser.find_element_by_id('button-review').click()
+        self.logger.info("button 'Continue' was clicked")
+        return self
+
+
+

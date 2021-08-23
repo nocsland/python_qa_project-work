@@ -5,7 +5,7 @@ from page_objects.ProductCardPage import ProductCardPage
 
 @allure.parent_suite("Проверка тестового магазина opencart")
 @allure.suite("Тесты страницы карточки товара")
-# @allure.sub_suite("Поиск элементов на странице карточки товара")
+@allure.sub_suite("Поиск элементов на странице карточки товара")
 @allure.epic("Проверка магазина на opencart")
 @allure.feature("Проверка карточки товара")
 @allure.title("Поиск элементов на странице карточки товара")
@@ -16,5 +16,22 @@ def tests_product_card_page(browser):
     product_card_page.find_h1_product()
     product_card_page.find_button_add_to_cart()
     product_card_page.find_input_quantity()
-    product_card_page.find_write_a_review()
     product_card_page.find_tab_description()
+
+
+@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.suite("Тесты страницы карточки товара")
+@allure.sub_suite("Создание отзыва о товаре")
+@allure.epic("Проверка магазина на opencart")
+@allure.feature("Проверка карточки товара")
+@allure.title("Создание отзыва о товаре")
+@allure.description("""Тест проверяет возможность создать отзыв на странице карточки товара""")
+@allure.severity(allure.severity_level.NORMAL)
+def tests_product_card_page(browser):
+    product_card_page = ProductCardPage(browser).open()
+    product_card_page.click_write_a_review()
+    product_card_page.fill_name_reviewer('reviewer')
+    product_card_page.fill_review('1234567890123456789012345(25)')
+    product_card_page.click_rating()
+    product_card_page.click_review_button()
+    product_card_page.wait_css_element('.alert-dismissible')
