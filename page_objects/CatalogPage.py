@@ -1,3 +1,5 @@
+import time
+
 import allure
 
 from page_objects.BasePage import BasePage
@@ -20,7 +22,7 @@ class CatalogPage(BasePage):
 
     @allure.step('Найти элемент "Product Compare"')
     def find_link_product_compare(self):
-        self.browser.find_elements_by_partial_link_text('Product Compare')
+        self.browser.find_element_by_partial_link_text('Product Compare')
         self.logger.info("Product Compare was found")
         return self
 
@@ -34,4 +36,17 @@ class CatalogPage(BasePage):
     def find_search_button(self):
         self.browser.find_element_by_xpath('//*[@id="search"]/span/button')
         self.logger.info("search button was found")
+        return self
+
+    @allure.step('Добавить в лист сравнения товары')
+    def add_compare_list(self, number):
+        self.browser.find_elements_by_css_selector('.fa-exchange')[number].click()
+        time.sleep(1)
+        self.logger.info("add to compare list")
+        return self
+
+    @allure.step('Открыть лист сравнения')
+    def open_compare_list(self):
+        self.browser.find_element_by_partial_link_text('product comparison').click()
+        self.logger.info("compare list opened")
         return self
