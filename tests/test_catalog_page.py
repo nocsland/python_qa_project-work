@@ -29,8 +29,8 @@ def test_find_el_catalog(browser):
 def test_add_items_to_compare(browser):
     catalog_page = CatalogPage(browser).open()
     catalog_page.add_compare_list(6)
-    catalog_page.wait_css_element('.fa-check-circle')
+    catalog_page.wait_partial_link_text('Product Compare (1)')
     catalog_page.add_compare_list(7)
-    catalog_page.wait_css_element('.fa-check-circle')
+    catalog_page.wait_partial_link_text('Product Compare (2)')
     catalog_page.open_compare_list()
     catalog_page.verify_title('Product Comparison')

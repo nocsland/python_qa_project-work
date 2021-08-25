@@ -45,11 +45,18 @@ class BasePage:
         self.logger.info('switch alert is ok')
         return self
 
-    @allure.step('Ожидание видимости элемента')
+    @allure.step('Ожидание видимости css элемента')
     def wait_css_element(self, selector):
         wait = WebDriverWait(self.browser, 3)
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, selector)))
-        self.logger.info('element is visible')
+        self.logger.info('css element is visible')
+        return self
+
+    @allure.step('Ожидание видимости части ссылки')
+    def wait_partial_link_text(self, selector):
+        wait = WebDriverWait(self.browser, 3)
+        wait.until(EC.visibility_of_element_located((By.PARTIAL_LINK_TEXT, selector)))
+        self.logger.info('partial link is visible')
         return self
 
     @allure.step('Переключение валюты')

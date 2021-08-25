@@ -1,5 +1,3 @@
-import time
-
 import allure
 
 from page_objects.BasePage import BasePage
@@ -41,7 +39,6 @@ class CatalogPage(BasePage):
     @allure.step('Добавить в лист сравнения товары')
     def add_compare_list(self, number):
         self.browser.find_elements_by_css_selector('.fa-exchange')[number].click()
-        time.sleep(1)
         self.logger.info("add to compare list")
         return self
 
