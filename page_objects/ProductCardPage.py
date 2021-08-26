@@ -64,6 +64,3 @@ class ProductCardPage(BasePage):
         self.browser.find_element_by_id('button-review').click()
         self.logger.info("button 'Continue' was clicked")
         return self
-
-
-

@@ -89,6 +89,11 @@ class BasePage:
         self.browser.get(self.url + '/')
         return self
 
+    @allure.step('Открыть страницу авторизации')
+    def open_login_page(self):
+        self.browser.get(self.url + '/index.php?route=account/login')
+        return self
+
     @allure.step('Найти и нажать "Register"')
     def click_add_user(self):
         self.browser.find_element_by_css_selector('.fa-user').click()
