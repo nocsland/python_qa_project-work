@@ -1,4 +1,5 @@
 import allure
+import pytest
 
 from page_objects.LoginPage import LoginPage
 
@@ -27,6 +28,7 @@ def test_find_elements_login_page(browser):
 @allure.description("""Тест проверяет возможность входа и выхода, как пользователь на странице авторизации""")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_login_as_customer(browser):
+    pytest.skip('Причина пропуска теста')
     login_page = LoginPage(browser).open()
     allure.attach.file(source='attachments/no_match_for_email.png', attachment_type=allure.attachment_type.PNG)
     # login_page.click_add_user()
