@@ -1,5 +1,4 @@
 import allure
-import pytest
 
 from page_objects.LoginPage import LoginPage
 
@@ -30,7 +29,6 @@ def test_find_elements_login_page(browser):
 def test_login_as_customer(browser):
     # pytest.skip('Причина пропуска теста')
     login_page = LoginPage(browser).open()
-    # allure.attach.file(source='attachments/no_match_for_email.png', attachment_type=allure.attachment_type.PNG)
     login_page.login_as_customer('test@ya.ru', 'test')
     login_page.logout_as_customer()
     login_page.verify_title('Account Logout')

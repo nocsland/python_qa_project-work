@@ -104,12 +104,6 @@ def browser(request):
     return driver
 
 
-# class MyListener(AbstractEventListener):
-#     def on_exception(self, exception, driver):
-#         screenshots_root = os.curdir + f'/screenshots/'
-#         logging.error(f'I got: {exception}')
-#         driver.save_screenshot(f'{screenshots_root}/{exception}.png')
-
 class MyListener(AbstractEventListener):
     def on_exception(self, exception, driver):
         logging.error(f'I got: {exception}')
