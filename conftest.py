@@ -107,7 +107,7 @@ def browser(request):
 
 class MyListener(AbstractEventListener):
     def on_exception(self, exception, driver):
-        screenshots_root = os.curdir + f'/screenshots/'
+        # screenshots_root = os.curdir + f'/screenshots/'
         logging.error(f'I got: {exception}')
         # driver.save_screenshot(f'{screenshots_root}/{driver.session_id}.png')
         allure.attach(
