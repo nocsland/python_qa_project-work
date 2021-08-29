@@ -109,8 +109,11 @@ class MyListener(AbstractEventListener):
     def on_exception(self, exception, driver):
         screenshots_root = os.curdir + f'/screenshots/'
         logging.error(f'I got: {exception}')
-        driver.save_screenshot(f'{screenshots_root}/{exception}.png')
-        allure.attach.file(source=f'{screenshots_root}/{exception}.png', attachment_type=allure.attachment_type.PNG)
+        # driver.save_screenshot(f'{screenshots_root}/{exception}.png')
+        allure.attach(
+            name=driver.session_id,
+            body=driver.get_screenshot_as_png(),
+            attachment_type=allure.attachment_type.PNG)
 
 
 @pytest.fixture(scope="session", autouse=True)
