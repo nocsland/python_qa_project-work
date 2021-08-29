@@ -109,7 +109,7 @@ class MyListener(AbstractEventListener):
     def on_exception(self, exception, driver):
         screenshots_root = os.curdir + f'/screenshots/'
         logging.error(f'I got: {exception}')
-        allure.attach(name='test_failed.png', type=AttachmentType.PNG)
+        allure.attach(body='body', name='failed.png', attachment_type=AttachmentType.PNG)
         # driver.save_screenshot(f'{screenshots_root}/{exception}.png')
         # allure.attach.file(source=f'{screenshots_root}/{exception}.png', attachment_type=allure.attachment_type.PNG)
 
