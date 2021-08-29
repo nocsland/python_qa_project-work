@@ -1,6 +1,5 @@
-import time
-
 import allure
+import pytest
 
 from page_objects.AdminPage import AdminPage
 

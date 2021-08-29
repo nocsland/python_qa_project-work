@@ -1,7 +1,9 @@
 import logging
 import os
 
+import allure
 import pytest
+from allure_commons.types import AttachmentType
 from selenium import webdriver
 from selenium.webdriver.support.events import EventFiringWebDriver, AbstractEventListener
 
@@ -107,7 +109,9 @@ class MyListener(AbstractEventListener):
     def on_exception(self, exception, driver):
         screenshots_root = os.curdir + f'/screenshots/'
         logging.error(f'I got: {exception}')
+        # allure.attach(name='test_failed', type=AttachmentType.PNG)
         driver.save_screenshot(f'{screenshots_root}/{exception}.png')
+        allure.attach.file(source=f'{screenshots_root}/{exception}.png', attachment_type=allure.attachment_type.PNG)
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -123,5 +127,3 @@ def get_environment(pytestconfig):
     with open(f'{tests_root}/allure-results/environment.properties', 'w') as f:
         for k, v in props.items():
             f.write(f'{k}={v}\n')
-
-
