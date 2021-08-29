@@ -59,6 +59,13 @@ class BasePage:
         self.logger.info('partial link is visible')
         return self
 
+    @allure.step('Ожидание видимости xpath элемента')
+    def wait_xpath_element(self, selector):
+        wait = WebDriverWait(self.browser, 3)
+        wait.until(EC.visibility_of_element_located((By.XPATH, selector)))
+        self.logger.info('XPATH is visible')
+        return self
+
     @allure.step('Переключение валюты')
     def click_switch_currency(self):
         self.browser.find_element_by_id('form-currency').click()

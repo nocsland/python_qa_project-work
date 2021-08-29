@@ -34,4 +34,4 @@ def test_write_review_product_card(browser):
     product_card_page.fill_review('1234567890123456789012345(25)')
     product_card_page.click_rating()
     product_card_page.click_review_button()
-    product_card_page.wait_css_element('.alert-dismissible')
+    product_card_page.wait_css_element('.fa-check-circle')
