@@ -89,17 +89,20 @@ class BasePage:
         self.browser.get(self.url + '/')
         return self
 
-    @allure.step('Открыть страницу авторизации')
-    def open_login_page(self):
-        self.browser.get(self.url + '/index.php?route=account/login')
-        return self
-
     @allure.step('Найти и нажать "Register"')
     def click_add_user(self):
         self.browser.find_element_by_css_selector('.fa-user').click()
         self.logger.info('dropdown menu was clicked')
         self.browser.find_element_by_link_text('Register').click()
         self.logger.info('Register was clicked')
+        return self
+
+    @allure.step('Найти и нажать "Login"')
+    def click_login_user_top(self):
+        self.browser.find_element_by_css_selector('.fa-user').click()
+        self.logger.info('dropdown menu was clicked')
+        self.browser.find_element_by_link_text('Login').click()
+        self.logger.info('Login was clicked')
         return self
 
     @allure.step('Заполнить обязательные поля формы регистрации пользователя')
@@ -125,4 +128,13 @@ class BasePage:
         self.browser.find_element_by_css_selector('.btn-primary').click()
         self.browser.find_element_by_link_text('Continue').click()
         self.logger.info('agree and continue was clicked')
+        return self
+
+    @allure.step('Удалить УЗ пользователя Ivan Ivanov')
+    def delete_customer(self):
+        self.browser.find_element_by_xpath('//tr/td[2][contains(text(),"Ivan Ivanov")]/..//input').click()
+        self.browser.find_element_by_css_selector('.fa-trash-o').click()
+        self.switch_to_alert_and_ok()
+        self.wait_css_element('.fa-check-circle')
+        self.logger.info('customer was deleted')
         return self

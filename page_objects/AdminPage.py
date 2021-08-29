@@ -81,11 +81,3 @@ class AdminPage(BasePage):
         self.logger.info('product was deleted')
         return self
 
-    @allure.step('Удалить УЗ пользователя')
-    def delete_customer(self):
-        self.browser.find_element_by_xpath('//tr/td[2][contains(text(),"Ivan Ivanov")]/..//input').click()
-        self.browser.find_element_by_css_selector('.fa-trash-o').click()
-        self.switch_to_alert_and_ok()
-        self.wait_css_element('.fa-check-circle')
-        self.logger.info('customer was deleted')
-        return self

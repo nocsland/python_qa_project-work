@@ -1,3 +1,5 @@
+import time
+
 import allure
 
 from page_objects.AdminPage import AdminPage
@@ -65,7 +67,12 @@ def test_delete_product(browser):
 @allure.description("Тест проверяет возможность удалить продукт")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_delete_customer(browser):
-    admin_page = AdminPage(browser).open()
+    admin_page = AdminPage(browser)
+    admin_page.open_main_page()
+    admin_page.click_add_user()
+    admin_page.fill_register_form('Ivan', 'Ivanov', 'test@ya.ru', '+79000551135', 'test')
+    admin_page.click_agree_and_continue()
+    admin_page.open()
     admin_page.login('user', 'bitnami')
     admin_page.goto_all_customers()
     admin_page.delete_customer()
