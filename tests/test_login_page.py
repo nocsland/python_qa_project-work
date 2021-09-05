@@ -30,5 +30,6 @@ def test_login_as_customer(browser):
     # pytest.skip('Причина пропуска теста')
     login_page = LoginPage(browser).open()
     login_page.login_as_customer('test@ya.ru', 'test')
+    login_page.verify_title('My Account')
     login_page.logout_as_customer()
     login_page.verify_title('Account Logout')
