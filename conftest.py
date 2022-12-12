@@ -16,7 +16,7 @@ def pytest_addoption(parser):
     parser.addoption("--maximized", action='store_true', default=False)
     parser.addoption("--headless", action='store_true', default=False)
     parser.addoption("--browser", action='store', choices=["chrome", "firefox", "opera"], default='chrome')
-    parser.addoption("--ver", action="store", default="90.0")
+    parser.addoption("--ver", action="store", default="107.0")
     parser.addoption("--vnc", action="store_true", default=False)
     parser.addoption("--logs", action="store_true", default=False)
     parser.addoption("--videos", action="store_true", default=False)
