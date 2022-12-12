@@ -1,5 +1,6 @@
 import allure
 
+from db import DbUtility
 from page_objects.MainPage import MainPage
 
 
@@ -41,12 +42,10 @@ def test_find_el_main(browser):
 def test_add_new_user(browser):
     main_page = MainPage(browser).open()
     main_page.click_add_user()
-    main_page.fill_register_form('Ivan', 'Ivanov', 'test@ya.ru', '+79000551135', 'test')
+    main_page.fill_register_form('Ivan', 'Ivanov', 'test@ya.ru', 'test')
     main_page.click_agree_and_continue()
     main_page.verify_title('My Account')
-    main_page.open_admin()
-    main_page.login('user', 'bitnami')
-    main_page.verify_title('Dashboard')
+    DbUtility.delete_test_customer()
 
 
 @allure.parent_suite("Проверка тестового магазина opencart")
@@ -59,14 +58,14 @@ def test_add_new_user(browser):
 def test_switch_currency(browser):
     main_page = MainPage(browser).open()
     main_page.click_switch_currency()
-    main_page.wait_css_element('button[name="EUR"]')
-    main_page.click_to_currency('EUR')
+    main_page.wait_element_contains_text('€ Euro')
+    main_page.click_to_currency('€ Euro')
     main_page.click_switch_currency()
-    main_page.wait_css_element('button[name="GBP"]')
-    main_page.click_to_currency('GBP')
+    main_page.wait_element_contains_text('£ Pound Sterling')
+    main_page.click_to_currency('£ Pound Sterling')
     main_page.click_switch_currency()
-    main_page.wait_css_element('button[name="USD"]')
-    main_page.click_to_currency('USD')
+    main_page.wait_element_contains_text('$ US Dollar')
+    main_page.click_to_currency('$ US Dollar')
 
 
 @allure.parent_suite("Проверка тестового магазина opencart")

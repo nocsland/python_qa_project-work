@@ -1,5 +1,6 @@
 import allure
 
+from db import DbUtility
 from page_objects.LoginPage import LoginPage
 
 
@@ -28,7 +29,9 @@ def test_find_elements_login_page(browser):
 @allure.severity(allure.severity_level.CRITICAL)
 def test_login_as_customer(browser):
     # pytest.skip('Причина пропуска теста')
+    DbUtility.insert_test_customer()
     login_page = LoginPage(browser).open()
     login_page.login_as_customer('test@ya.ru', 'test')
     login_page.logout_as_customer()
     login_page.verify_title('Account Logout')
+    DbUtility.delete_test_customer()

@@ -22,19 +22,18 @@ class BasePage:
 
     @allure.step('Проверка title')
     def verify_title(self, title):
-        wait = WebDriverWait(self.browser, 5)
-        wait.until(EC.title_is(title))
+        WebDriverWait(self.browser, 5).until(EC.title_is(title))
         assert self.browser.title == title
         self.logger.info('title was verified')
         return self
 
     @allure.step('Вход в админ панель')
     def login(self, login, password):
-        self.browser.find_element_by_name('username').clear()
-        self.browser.find_element_by_name('username').send_keys(login)
-        self.browser.find_element_by_id('input-password').clear()
-        self.browser.find_element_by_id('input-password').send_keys(password)
-        self.browser.find_element_by_xpath('//button[contains(.," Login")]').click()
+        self.browser.find_element(By.NAME, 'username').clear()
+        self.browser.find_element(By.NAME, 'username').send_keys(login)
+        self.browser.find_element(By.ID, 'input-password').clear()
+        self.browser.find_element(By.ID, 'input-password').send_keys(password)
+        self.browser.find_element(By.XPATH, '//button[contains(.," Login")]').click()
         self.logger.info("login completed")
         return self
 
@@ -45,11 +44,53 @@ class BasePage:
         self.logger.info('switch alert is ok')
         return self
 
+    @allure.step('Ожидание видимости ccылки')
+    def wait_link_text(self, selector):
+        wait = WebDriverWait(self.browser, 3)
+        wait.until(EC.visibility_of_element_located((By.LINK_TEXT, selector)))
+        self.logger.info('text link is visible')
+        return self
+
     @allure.step('Ожидание видимости css элемента')
     def wait_css_element(self, selector):
         wait = WebDriverWait(self.browser, 3)
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, selector)))
         self.logger.info('css element is visible')
+        return self
+
+    @allure.step('Ожидание видимости элемента')
+    def wait_element_is_visible(self, locator, selector):
+        wait = WebDriverWait(self.browser, 3)
+        wait.until(EC.visibility_of_element_located((locator, selector)))
+        self.logger.info('element is visible')
+        return self
+
+    @allure.step('Ожидание видимости всех элементов')
+    def wait_all_elements_is_visible(self, locator, selector):
+        wait = WebDriverWait(self.browser, 3)
+        wait.until(EC.visibility_of_all_elements_located((locator, selector)))
+        self.logger.info('elements is visible')
+        return self
+
+    @allure.step('Ожидание кликабельности элемента')
+    def wait_clickable_element(self, locator, selector):
+        wait = WebDriverWait(self.browser, 5)
+        wait.until(EC.element_to_be_clickable((locator, selector)))
+        self.logger.info('element is clickable')
+        return
+
+    @allure.step('Ожидание выбора элемента')
+    def wait_selected_element(self, locator, selector):
+        wait = WebDriverWait(self.browser, 5)
+        wait.until(EC.element_to_be_selected((locator, selector)))
+        self.logger.info('element is selected')
+        return self
+
+    @allure.step('Ожидание видимости текста элемента')
+    def wait_element_contains_text(self, text):
+        wait = WebDriverWait(self.browser, 3)
+        wait.until(EC.visibility_of_element_located((By.XPATH, f"//*[contains(text(),'{text}')]")))
+        self.logger.info('element contains text')
         return self
 
     @allure.step('Ожидание видимости части ссылки')
@@ -61,25 +102,26 @@ class BasePage:
 
     @allure.step('Переключение валюты')
     def click_switch_currency(self):
-        self.browser.find_element_by_id('form-currency').click()
+        self.browser.find_element(By.ID, 'form-currency').click()
         self.logger.info('switch currency menu was called')
         return self
 
     @allure.step('Выбор валюты')
     def click_to_currency(self, currency):
-        self.browser.find_element_by_css_selector(f'button[name="{currency}"]').click()
+        self.browser.find_element(By.XPATH, f'//a[contains(text(),"{currency}")]').click()
         self.logger.info('currency was switched')
         return self
 
     @allure.step('Открыть страницу панели администратора')
     def open_admin(self):
-        self.browser.get(self.url + '/admin/')
+        self.browser.get(self.url + '/administration/index.php?route=common/')
         return self
 
     @allure.step('Перейти на страницу "Customers"')
     def goto_all_customers(self):
-        self.browser.find_element_by_xpath('//*[@id="menu-customer"]/a').click()
-        self.browser.find_elements_by_xpath('//a[contains(text(),"Customers")]')[1].click()
+        self.wait_element_is_visible(By.XPATH, '//*[@id="menu-customer"]/a')
+        self.browser.find_element(By.XPATH, '//*[@id="menu-customer"]/a').click()
+        self.browser.find_elements(By.XPATH, '//a[contains(text(),"Customers")]')[1].click()
         self.verify_title('Customers')
         self.logger.info('navigated to all customers')
         return self
@@ -96,33 +138,30 @@ class BasePage:
 
     @allure.step('Найти и нажать "Register"')
     def click_add_user(self):
-        self.browser.find_element_by_css_selector('.fa-user').click()
+        self.browser.find_element(By.CSS_SELECTOR, '.fa-user').click()
         self.logger.info('dropdown menu was clicked')
-        self.browser.find_element_by_link_text('Register').click()
+        self.browser.find_element(By.LINK_TEXT, 'Register').click()
         self.logger.info('Register was clicked')
         return self
 
     @allure.step('Заполнить обязательные поля формы регистрации пользователя')
-    def fill_register_form(self, f_name, l_name, email, phone, password):
-        self.browser.find_element_by_id('input-firstname').clear()
-        self.browser.find_element_by_id('input-firstname').send_keys(f_name)
-        self.browser.find_element_by_id('input-lastname').clear()
-        self.browser.find_element_by_id('input-lastname').send_keys(l_name)
-        self.browser.find_element_by_id('input-email').clear()
-        self.browser.find_element_by_id('input-email').send_keys(email)
-        self.browser.find_element_by_id('input-telephone').clear()
-        self.browser.find_element_by_id('input-telephone').send_keys(phone)
-        self.browser.find_element_by_id('input-password').clear()
-        self.browser.find_element_by_id('input-password').send_keys(password)
-        self.browser.find_element_by_id('input-confirm').clear()
-        self.browser.find_element_by_id('input-confirm').send_keys(password)
+    def fill_register_form(self, f_name, l_name, email, password):
+        self.browser.find_element(By.ID, 'input-firstname').clear()
+        self.browser.find_element(By.ID, 'input-firstname').send_keys(f_name)
+        self.browser.find_element(By.ID, 'input-lastname').clear()
+        self.browser.find_element(By.ID, 'input-lastname').send_keys(l_name)
+        self.browser.find_element(By.ID, 'input-email').clear()
+        self.browser.find_element(By.ID, 'input-email').send_keys(email)
+        self.browser.find_element(By.ID, 'input-password').clear()
+        self.browser.find_element(By.ID, 'input-password').send_keys(password)
         self.logger.info('all fields register form was filled')
         return self
 
     @allure.step('Найти и нажать "Agree" и "Continue"')
     def click_agree_and_continue(self):
-        self.browser.find_element_by_name('agree').click()
-        self.browser.find_element_by_css_selector('.btn-primary').click()
-        self.browser.find_element_by_link_text('Continue').click()
+        self.browser.find_element(By.NAME, 'agree').click()
+        self.browser.find_element(By.CSS_SELECTOR, '.btn-primary').click()
+        self.wait_link_text('Continue')
+        self.browser.find_element(By.LINK_TEXT, 'Continue').click()
         self.logger.info('agree and continue was clicked')
         return self

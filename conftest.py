@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s [%(levelname)s] %
 
 
 def pytest_addoption(parser):
-    parser.addoption("--executor", action="store", default="192.168.0.11")
+    parser.addoption("--executor", action="store", default="192.168.1.34")
     parser.addoption("--maximized", action='store_true', default=False)
     parser.addoption("--headless", action='store_true', default=False)
     parser.addoption("--browser", action='store', choices=["chrome", "firefox", "opera"], default='chrome')
