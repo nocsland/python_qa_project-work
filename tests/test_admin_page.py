@@ -4,11 +4,11 @@ from db import DbUtility
 from page_objects.AdminPage import AdminPage
 
 
-@allure.parent_suite("Проверка типовой реализации магазина")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы администратора")
-@allure.epic("Проверка магазина на opencart")
-@allure.feature("Проверка админки")
-@allure.title("Поиск элементов на странице админки")
+@allure.epic("Тестирование типового магазина")
+@allure.feature("Проверка страницы администратора")
+@allure.title("Поиск элементов на странице администратора")
 @allure.description("""Тест проверяет наличие элементов на странице админки""")
 @allure.severity(allure.severity_level.TRIVIAL)
 def test_find_el_on_admin_page(browser):
@@ -20,17 +20,15 @@ def test_find_el_on_admin_page(browser):
     admin_page.find_login_button()
 
 
-@allure.parent_suite("Проверка типовой реализации магазина")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы администратора")
-@allure.feature("Проверка админки")
-@allure.epic("Проверка магазина на opencart")
-@allure.title("Добавление продукта")
+@allure.feature("Проверка страницы администратора")
+@allure.epic("Тестирование типового магазина")
+@allure.title("Добавление продукта администратором")
 @allure.description("Тест проверяет возможность добавить новый продукт")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_product(browser):
     DbUtility.delete_test_product()
-    # DbUtility.delete_test_product_description()
-    # DbUtility.delete_test_product_seo_info()
     admin_page = AdminPage(browser).open()
     admin_page.login('user', 'bitnami')
     admin_page.verify_title('Dashboard')
@@ -46,11 +44,11 @@ def test_add_product(browser):
     admin_page.wait_css_element('.alert-dismissible')
 
 
-@allure.parent_suite("Типовая реализация магазина")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы администратора")
-@allure.feature("Страница администратора")
-@allure.epic("Проверка тестового магазина")
-@allure.title("Удаление продукта")
+@allure.feature("Проверка страницы администратора")
+@allure.epic("Тестирование типового магазина")
+@allure.title("Удаление продукта администратором")
 @allure.description("Тест проверяет возможность удалить продукт")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_delete_product(browser):
@@ -63,11 +61,11 @@ def test_delete_product(browser):
     admin_page.wait_css_element('.alert-dismissible')
 
 
-@allure.parent_suite("Проверка типовой реализации магазина")
-@allure.suite("Тесты страницы админки")
-@allure.feature("Проверка админки")
-@allure.epic("Проверка магазина на opencart")
-@allure.title("Удаление пользователя")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
+@allure.suite("Тесты страницы администратора")
+@allure.feature("Проверка страницы администратора")
+@allure.epic("Тестирование типового магазина")
+@allure.title("Удаление пользователя администратором")
 @allure.description("Тест проверяет возможность удалить пользователя")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_delete_customer(browser):

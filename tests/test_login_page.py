@@ -4,9 +4,9 @@ from db import DbUtility
 from page_objects.LoginPage import LoginPage
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы авторизации")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка наличия элементов на странице логина")
 @allure.title("Поиск элементов на странице логина")
 @allure.description("""Тест проверяет наличие элементов на странице логина""")
@@ -20,9 +20,9 @@ def test_find_elements_login_page(browser):
     login_page.find_login_button()
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы авторизации")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка возможности входа и выхода как пользователь")
 @allure.title("Вход на странице авторизации")
 @allure.description("""Тест проверяет возможность входа и выхода, как пользователь на странице авторизации""")

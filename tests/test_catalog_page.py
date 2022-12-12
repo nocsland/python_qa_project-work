@@ -3,9 +3,9 @@ import allure
 from page_objects.CatalogPage import CatalogPage
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы каталога")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка каталога")
 @allure.title("Поиск элементов на странице каталога")
 @allure.description("""Тест проверяет наличие элементов на странице каталога""")
@@ -19,9 +19,9 @@ def test_find_el_catalog(browser):
     catalog_page.find_search_button()
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы каталога")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка каталога")
 @allure.title("Добавление товаров в сравнение")
 @allure.description("""Тест проверяет возможность добавить товары в лист сравнения""")

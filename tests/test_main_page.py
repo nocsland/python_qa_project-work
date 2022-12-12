@@ -4,9 +4,9 @@ from db import DbUtility
 from page_objects.MainPage import MainPage
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты главной страницы")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка title")
 @allure.title("Проверка title главной страницы")
 @allure.description("""Тест проверяет title главной страницы""")
@@ -16,9 +16,9 @@ def test_is_title(browser):
     main_page.verify_title('Your Store')
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты главной страницы")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка главной страницы")
 @allure.title("Поиск элементов на главной странице")
 @allure.description("""Тест проверяет наличие элементов на главной странице""")
@@ -32,9 +32,9 @@ def test_find_el_main(browser):
     main_page.find_part_link_terms()
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты главной страницы")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка главной страницы")
 @allure.title("Добавление нового пользователя")
 @allure.description("""Тест проверяет возможность добавить нового пользователя""")
@@ -48,9 +48,9 @@ def test_add_new_user(browser):
     DbUtility.delete_test_customer()
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты главной страницы")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка главной страницы")
 @allure.title("Переключение валюты")
 @allure.description("""Тест проверяет возможность переключить валюту цен и расчетов""")
@@ -68,9 +68,9 @@ def test_switch_currency(browser):
     main_page.click_to_currency('$ US Dollar')
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты главной страницы")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка главной страницы")
 @allure.title("Добавить и удалить товар из корзины")
 @allure.description("""Тест проверяет возможность добавить товар в корзину и его удаление из корзины""")

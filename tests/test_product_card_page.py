@@ -3,10 +3,10 @@ import allure
 from page_objects.ProductCardPage import ProductCardPage
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
-@allure.suite("Тесты страницы карточки товара")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
+@allure.suite("Тесты карточки товара")
 @allure.sub_suite("Поиск элементов на странице карточки товара")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка карточки товара")
 @allure.title("Поиск элементов на странице карточки товара")
 @allure.description("""Тест проверяет наличие элементов на странице карточки товара""")
@@ -19,10 +19,10 @@ def test_find_elements_on_product_card(browser):
     product_card_page.find_tab_description()
 
 
-@allure.parent_suite("Проверка тестового магазина opencart")
-@allure.suite("Тесты страницы карточки товара")
+@allure.parent_suite("Автоматизация тестирования типового магазина")
+@allure.suite("Тесты карточки товара")
 @allure.sub_suite("Создание отзыва о товаре")
-@allure.epic("Проверка магазина на opencart")
+@allure.epic("Тестирование типового магазина")
 @allure.feature("Проверка карточки товара")
 @allure.title("Создание отзыва о товаре")
 @allure.description("""Тест проверяет возможность создать отзыв на странице карточки товара""")
