@@ -15,7 +15,7 @@ def pytest_addoption(parser):
     parser.addoption("--executor", action="store", default="192.168.1.34")
     parser.addoption("--maximized", action='store_true', default=False)
     parser.addoption("--headless", action='store_true', default=False)
-    parser.addoption("--browser", action='store', choices=["chrome", "firefox", "opera"], default='chrome')
+    parser.addoption("--browser", action='store', choices=["chrome", "firefox", "MicrosoftEdge"], default='chrome')
     parser.addoption("--ver", action="store", default="107.0")
     parser.addoption("--vnc", action="store_true", default=False)
     parser.addoption("--logs", action="store_true", default=False)
@@ -49,8 +49,13 @@ def browser(request):
             options.headless = headless
             options.binary_location = r'/usr/bin/firefox'
             driver = webdriver.Firefox(options=options)
-        elif browser == 'opera':
-            driver = webdriver.Opera()
+        elif browser == 'MicrosoftEdge':
+            options = webdriver.EdgeOptions()
+            options.add_argument('allow-elevated-browser')
+            options.binary_location = r'/usr/bin/microsoft-edge'
+            driver = webdriver.ChromiumEdge(options=options)
+
+
         else:
             raise ValueError('driver not supported: {}'.format(browser))
 
