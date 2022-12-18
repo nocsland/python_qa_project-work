@@ -10,7 +10,7 @@ from page_objects.AdminPage import AdminPage
 @allure.feature("Проверка страницы администратора")
 @allure.title("Поиск элементов на странице администратора")
 @allure.description("""Тест проверяет наличие элементов на странице админки""")
-@allure.severity(allure.severity_level.TRIVIAL)
+@allure.severity(allure.severity_level.NORMAL)
 def test_find_el_on_admin_page(browser):
     admin_page = AdminPage(browser).open()
     admin_page.find_logo_open_cart()

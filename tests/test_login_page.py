@@ -23,8 +23,8 @@ def test_find_elements_login_page(browser):
 @allure.parent_suite("Автоматизация тестирования типового магазина")
 @allure.suite("Тесты страницы авторизации")
 @allure.epic("Тестирование типового магазина")
-@allure.feature("Проверка возможности входа и выхода как пользователь")
-@allure.title("Вход на странице авторизации")
+@allure.feature("Проверка возможности входа и выхода пользователя")
+@allure.title("Вход/выход на странице авторизации")
 @allure.description("""Тест проверяет возможность входа и выхода, как пользователь на странице авторизации""")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_login_as_customer(browser):
