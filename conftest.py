@@ -47,6 +47,7 @@ def browser(request):
         elif browser == 'firefox':
             options = webdriver.FirefoxOptions()
             options.headless = headless
+            options.binary_location = r'/usr/bin/firefox'
             driver = webdriver.Firefox(options=options)
         elif browser == 'opera':
             driver = webdriver.Opera()
