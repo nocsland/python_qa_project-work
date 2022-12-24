@@ -4,7 +4,7 @@ import logging
 import mysql.connector as mariadb
 from mysql.connector import Error
 
-connection = mariadb.connect(user='bn_opencart', password='', database='bitnami_opencart', host='192.168.1.34',
+connection = mariadb.connect(user='bn_opencart', password='', database='bitnami_opencart', host='192.168.1.38',
                              port='3306')
 logging.info('Подключение к базе данных выполнено успешно')
 
@@ -53,17 +53,3 @@ def delete_test_product():
     execute_query(query)
     connection.commit()
     logging.info("SEO информация о тестовом продукте успешно удалена")
-
-
-# def delete_test_product_description():
-#     query = "delete from oc_product_description where name = 'test'"
-#     execute_query(query)
-#     connection.commit()
-#     logging.info("Описание тестового продукта успешно удалено")
-#
-#
-# def delete_test_product_seo_info():
-#     query = "delete from oc_seo_url where keyword = 'test'"
-#     execute_query(query)
-#     connection.commit()
-#     logging.info("SEO информация о тестовом продукте успешно удалена")

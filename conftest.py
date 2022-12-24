@@ -51,7 +51,6 @@ def browser(request):
             driver = webdriver.Firefox(options=options)
         elif browser == 'MicrosoftEdge':
             options = webdriver.EdgeOptions()
-            options.add_argument('allow-elevated-browser')
             options.binary_location = r'/usr/bin/microsoft-edge'
             driver = webdriver.ChromiumEdge(options=options)
 
