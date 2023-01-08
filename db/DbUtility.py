@@ -4,7 +4,7 @@ import logging
 import mysql.connector as mariadb
 from mysql.connector import Error
 
-connection = mariadb.connect(user='bn_opencart', password='', database='bitnami_opencart', host='192.168.49.3',
+connection = mariadb.connect(user='bn_opencart', password='', database='bitnami_opencart', host='192.168.1.38',
                              port='3306')
 logging.info('Подключение к базе данных выполнено успешно')
 
