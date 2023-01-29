@@ -121,9 +121,10 @@ class MyListener(AbstractEventListener):
 @pytest.fixture(scope="session", autouse=True)
 def get_environment(pytestconfig):
     browser_name = pytestconfig.getoption("--browser")
+    browser_ver = pytestconfig.getoption("--ver")
     props = {
-        'Browser': browser_name,
-        'Stand': 'Production'
+        'Browser': f'{browser_name} {browser_ver}',
+        'Stand': os.name
 
     }
 
